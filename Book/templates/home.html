@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CRUD App Home</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 30px 15px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #e74c3c;
+    }
+
+    .nav-links {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .nav-links a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 18px;
+      background-color: #3498db;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: #2c80b4;
+    }
+
+    table {
+      width: 90%;
+      max-width: 1000px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    caption {
+      font-size: 1.4em;
+      margin: 15px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f8f8f8;
+      color: #333;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f4f6f9;
+    }
+
+    a.action-link {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a.action-link:hover {
+      text-decoration: underline;
+      color: #21618c;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Welcome to CRUD App Home Page</h2>
+
+  <div class="nav-links">
+    <a href="{% url 'show' %}">Show All Books</a>
+    <a href="{% url 'add' %}">Add New Book</a>
+    <a href="{% url 'showemployee' %}">Show All Employees</a>
+    <a href="{% url 'addemp' %}">Add New Employee</a>
+  </div>
+
+  <!-- Book Information Table -->
+  <table>
+    <caption>Book Information</caption>
+    <thead>
+      <tr>
+        <th>Book Name</th>
+        <th>Price</th>
+        <th>Author</th>
+        <th>Publishing Date</th>
+        <th>Quantity</th>
+        <th colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in data %}
+      <tr>
+        <td>{{ i.book_name }}</td>
+        <td>{{ i.book_price }}</td>
+        <td>{{ i.author }}</td>
+        <td>{{ i.pubdate }}</td>
+        <td>{{ i.qty }}</td>
+        <td><a class="action-link" href="{% url 'updateb' i.id %}">Edit</a></td>
+        <td><a class="action-link" href="{% url 'deleteb' i.id %}">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Employee Information Table -->
+  <table>
+    <caption>Employee Information</caption>
+    <thead>
+      <tr>
+        <th>Employee Name</th>
+        <th>Salary</th>
+        <th>Department Number</th>
+        <th>Job</th>
+        <th>Age</th>
+        <th colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in empdata %}
+      <tr>
+        <td>{{ i.ename }}</td>
+        <td>{{ i.sal }}</td>
+        <td>{{ i.deptno }}</td>
+        <td>{{ i.job }}</td>
+        <td>{{ i.age }}</td>
+        <td><a class="action-link" href="{% url 'updateemp' i.id %}">Edit</a></td>
+        <td><a class="action-link" href="{% url 'deletee' i.id %}">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</body>
+</html>

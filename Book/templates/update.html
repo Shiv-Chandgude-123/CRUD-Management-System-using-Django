@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Update Book</title>
+  <style>
+    body {
+      background-color: #f5f7fa;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #e74c3c;
+      margin-bottom: 30px;
+    }
+
+    .form-box {
+      max-width: 450px;
+      margin: auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
+    table {
+      width: 100%;
+    }
+
+    td {
+      padding: 12px 8px;
+      vertical-align: top;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="date"]:focus {
+      border-color: #3498db;
+    }
+
+    input[type="submit"] {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #2980b9;
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .back-link a {
+      color: #3498db;
+      text-decoration: none;
+    }
+
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Update Book</h2>
+
+  <div class="form-box">
+    <form action="{% url 'updateb' data.id %}" method="POST">
+      {% csrf_token %}
+      <table>
+        <tr>
+          <td>Book Name:</td>
+          <td><input type="text" name="book_name" value="{{ data.book_name }}" required></td>
+        </tr>
+
+        <tr>
+          <td>Price:</td>
+          <td><input type="number" name="book_price" value="{{ data.book_price }}" required></td>
+        </tr>
+
+        <tr>
+          <td>Author:</td>
+          <td><input type="text" name="author" value="{{ data.author }}" required></td>
+        </tr>
+
+        <tr>
+          <td>Publishing Date:</td>
+          <td><input type="date" name="pubdate" value="{{ data.pubdate|date:'Y-m-d' }}" required></td>
+        </tr>
+
+        <tr>
+          <td>Quantity:</td>
+          <td><input type="number" name="qty" value="{{ data.qty }}" required></td>
+        </tr>
+
+        <tr>
+          <td colspan="2"><input type="submit" value="Update Book"></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+  <div class="back-link">
+    <p><a href="{% url 'show' %}">← Back to Book List</a></p>
+  </div>
+
+</body>
+</html>
